@@ -1,0 +1,44 @@
+/* .body{
+    background-color: transparent;
+} */
+#god{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+#scoreboard{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    font-size: 300%;
+    color: crimson;
+    background-color: black;
+}
+
+#Kill{
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    font-size: 300%;
+    color: purple;
+    background-color: rgb(9, 255, 0);
+}
+.pulsate{
+    animation-name: pulse_animation;
+    animation-duration: 1000ms;
+    transform-origin:70% 70%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes pulse_animation {
+    0% { transform: scale(1); }
+    30% { transform: scale(1); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1); }
+    100% { transform: scale(1); }
+}

