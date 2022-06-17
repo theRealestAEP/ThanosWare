@@ -4,7 +4,7 @@
   "description": "cause fuck you, you dumb bitch",
   "main": "main.js",
   "dependencies": {
-    "electron": "^6.0.2",
+    "electron": "^15.5.5",
     "iohook": "^0.6.1",
     "node-abi": "^2.11.0",
     "tasklist": "^4.0.0",
